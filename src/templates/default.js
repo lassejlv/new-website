@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
+import config from "./config.js";
 
-export const defaultTemplate = (projectName, buildTool) => {
+export const defaultTemplate = (projectName, buildTool, libarys) => {
   const files = [
     {
       name: "index.html",
@@ -15,11 +16,20 @@ export const defaultTemplate = (projectName, buildTool) => {
      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      <link rel="stylesheet" href="./assets/css/main.css" />
      <script src="assets/js/main.js" type="module"></script>
+     ${config.cdns
+       .map((cdn) => {
+         if (libarys.includes(cdn.name)) {
+           return `
+<link rel="stylesheet" href="${cdn.css}" />
+${cdn.js !== null ? `<script src="${cdn.js}"></script>` : ""}`;
+         }
+       })
+       .join("")}
      <title>Template web + ${buildTool}</title>
     </head>
-      <body>
+    <body>
          
-      </body>
+    </body>
 </html>
       `,
     },

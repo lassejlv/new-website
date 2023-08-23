@@ -13,6 +13,7 @@
   "type": "module",
   "dependencies": {
     "chalk": "^5.3.0",
-    "inquirer": "^9.2.10"
+    "inquirer": "^9.2.10",
+    "nanospinner": "^1.1.0"
   }
 }
