@@ -10,7 +10,7 @@ import { exec } from "child_process";
 import * as spinner from "nanospinner";
 
 // Variables
-const templatesLit = ["default"];
+const templatesLit = ["default", "tailwindcss"];
 const buildTools = ["vite", "servemon", "none"];
 const libarys = ["bootstrap", "fontawesome"];
 
@@ -66,8 +66,12 @@ inquirer.prompt(questions).then((answers) => {
 
   // Create folder
   fs.mkdirSync(answers.project_name);
-  // Create "assets" folder in project folder
-  fs.mkdirSync(answers.project_name + "/assets");
+
+  // Only create assets folder if default template is selected
+  if (answers.template === "default") {
+    // Create "assets" folder in project folder
+    fs.mkdirSync(answers.project_name + "/assets");
+  }
   // If git create .gitignore file and run "git init" inside project folder
   if (answers.git) {
     // Create .gitignore file
@@ -105,6 +109,16 @@ node_modules
   switch (answers.template) {
     case "default": {
       template.defaultTemplate(
+        answers.project_name,
+        answers.buildTool,
+        answers.libarys
+      );
+
+      break;
+    }
+
+    case "tailwindcss": {
+      template.tailwindcss(
         answers.project_name,
         answers.buildTool,
         answers.libarys
