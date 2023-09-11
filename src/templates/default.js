@@ -20,7 +20,7 @@ export const defaultTemplate = (projectName, buildTool, libarys) => {
        .map((cdn) => {
          if (libarys.includes(cdn.name)) {
            return `
-<link rel="stylesheet" href="${cdn.css}" />
+${cdn.css !== null ? `<link rel="stylesheet" href="${cdn.css}" />` : ""}
 ${cdn.js !== null ? `<script src="${cdn.js}"></script>` : ""}`;
          }
        })

@@ -24,3 +24,7 @@ npx new-website
 ```bash
 new-website # eller npx, pnpx new-website
 ```
+
+## Commands
+
+- `--version` - Viser versionen af cli'en

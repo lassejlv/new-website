@@ -19,7 +19,7 @@ export const tailwindcss = (projectName, buildTool, libarys) => {
        .map((cdn) => {
          if (libarys.includes(cdn.name)) {
            return `
-<link rel="stylesheet" href="${cdn.css}" />
+${cdn.css !== null ? `<link rel="stylesheet" href="${cdn.css}" />` : ""};
 ${cdn.js !== null ? `<script src="${cdn.js}"></script>` : ""}`;
          }
        })
@@ -130,7 +130,7 @@ export default defineConfig({
 module.exports = {
   projectName: "${projectName}",
   port: 3000,
-  directory: "./", 
+  directory: "./src", 
   watch: true, 
   logger: true, 
 };
