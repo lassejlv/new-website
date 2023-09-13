@@ -81,6 +81,23 @@ if (process.argv[2] === "--version") {
     // Create folder
     fs.mkdirSync(answers.project_name);
 
+    // Creating cli.config.js
+    const fileContents = `export default {
+  // Her er det et resumé af hvad projektet indeholder
+  template: "${answers.template}",
+  buildTool: "${answers.buildTool}",
+  libarys: ${JSON.stringify(answers.libarys)},
+  git: ${answers.git}
+};
+`;
+    fs.writeFileSync(
+      answers.project_name + "/cli.config.js",
+      fileContents,
+      (err) => {
+        if (err) throw err;
+      }
+    );
+
     // Only create assets folder if default template is selected
     if (answers.template === "default") {
       // Create "assets" folder in project folder
@@ -146,6 +163,8 @@ node_modules
 
     setTimeout(() => {
       spin.success();
+
+      console.log(`\nNu er dit projekt klar til at blive brugt! 🎉`);
     }, 1000);
   });
 }

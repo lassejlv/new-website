@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import config from "./config.js";
+import chalk from "chalk";
 
 export const tailwindcss = (projectName, buildTool, libarys) => {
   const files = [
@@ -53,8 +54,6 @@ module.exports = {
       folder: null,
       content: `{
   "scripts": {
-    "all": "concurrently \"pnpm run dev\" \"pnpm run tailwind\"",
-    "dev": "vite",
     "tailwind": "tailwindcss -i ./src/css/index.css -o ./src/dist/index.css --watch"
   },
   "devDependencies": {
@@ -110,6 +109,7 @@ module.exports = {
 import { defineConfig } from "vite";
 
 export default defineConfig({
+    root: "./src",
     server: { port: 3000 },
     build: { outDir: "${projectName}" },
 });`,
@@ -147,6 +147,10 @@ module.exports = {
   }
 
   setTimeout(() => {
-    console.log("\nFor at starte tailwindcss skriv: npm run tailwind\n");
+    console.log(
+      `\nFor at starte tailwindcss skriv kan du bruge ${chalk.greenBright(
+        "npm run tailwind"
+      )} scriptet\n`
+    );
   }, 1500);
 };

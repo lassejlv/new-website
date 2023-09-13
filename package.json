@@ -1,11 +1,11 @@
 {
   "name": "new-website",
-  "version": "1.4.1",
-  "description": "",
+  "version": "1.5.0",
+  "description": "Med denne cli, så kan du nemt oprette en ny hjemmeside, med en simple kommando.",
   "main": "src/index.js",
   "bin": "src/index.js",
   "scripts": {
-    "cli": "node --no-warnings ."
+    "cli": "bun run src/index.js"
   },
   "keywords": [],
   "author": "",
