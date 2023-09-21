@@ -15,7 +15,7 @@ export const tailwindcss = (projectName, buildTool, libarys) => {
      <meta charset="UTF-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      <link rel="stylesheet" href="./dist/index.css" />
-     <script src="js/assets" type="module"></script>
+     <script src="src/js/index.js" type="module"></script>
      ${config.cdns
        .map((cdn) => {
          if (libarys.includes(cdn.name)) {
@@ -24,7 +24,8 @@ ${cdn.css !== null ? `<link rel="stylesheet" href="${cdn.css}" />` : ""};
 ${cdn.js !== null ? `<script src="${cdn.js}"></script>` : ""}`;
          }
        })
-       .join("")}
+       .join("")
+       .replace(";", "")}
      <title>Template web + ${buildTool}</title>
     </head>
     <body>
@@ -105,8 +106,7 @@ module.exports = {
     case "vite": {
       const viteFile = {
         name: "vite.config.js",
-        content: `
-import { defineConfig } from "vite";
+        content: `import { defineConfig } from "vite";
 
 export default defineConfig({
     root: "./src",

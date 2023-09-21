@@ -26,6 +26,13 @@ const config = {
       css: null,
       js: "https://unpkg.com/@badcss/core@1.0.0-beta.1/dist/badcss-1.0.0-beta.1-bundle",
     },
+
+    {
+      id: 5,
+      name: "pico-css",
+      css: "https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css",
+      js: null,
+    },
   ],
 };
 

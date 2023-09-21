@@ -24,7 +24,8 @@ ${cdn.css !== null ? `<link rel="stylesheet" href="${cdn.css}" />` : ""}
 ${cdn.js !== null ? `<script src="${cdn.js}"></script>` : ""}`;
          }
        })
-       .join("")}
+       .join("")
+       .replace(";", "")}
      <title>Template web + ${buildTool}</title>
     </head>
     <body>
