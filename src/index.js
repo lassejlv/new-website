@@ -24,7 +24,7 @@ if (process.argv[2] === "--version") {
   process.exit(0);
 } else {
   // Variables
-  const templatesLit = ["default", "tailwindcss"];
+  const templatesLit = ["default", "tailwindcss", "advanced-html-struktur"];
   const buildTools = ["vite", "servemon", "none"];
   const libarys = config.cdns.map((libary) => libary.name);
 
@@ -80,6 +80,20 @@ if (process.argv[2] === "--version") {
 
     // Create folder
     fs.mkdirSync(answers.project_name);
+
+    //
+    if (
+      answers.template === "advanced-html-struktur" &&
+      answers.buildTool === "vite"
+    ) {
+      spin.error();
+      console.log(
+        chalk.redBright(
+          "\n\nDu kan ikke bruge advanced-html-struktur med vite. Vælg en anden template eller build tool.\n\n"
+        )
+      );
+      process.exit(0);
+    }
 
     // Creating cli.config.js
     const fileContents = `export default {
@@ -154,6 +168,14 @@ node_modules
 
       case "tailwindcss": {
         template.tailwindcss(
+          answers.project_name,
+          answers.buildTool,
+          answers.libarys
+        );
+      }
+
+      case "advanced-html-struktur": {
+        template.advancedTemplate(
           answers.project_name,
           answers.buildTool,
           answers.libarys

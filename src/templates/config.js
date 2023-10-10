@@ -33,6 +33,13 @@ const config = {
       css: "https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css",
       js: null,
     },
+
+    {
+      id: 6,
+      name: "includer.js",
+      css: null,
+      js: "https://unpkg.com/includerjs@2.0.0/dist/includer-2.0.0.bundle.js",
+    },
   ],
 };
 
